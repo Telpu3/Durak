@@ -14,7 +14,7 @@ namespace DurakGame
         {
             hand.Add(card);
         }
-        public void AddCards(List<Card> cards, int count)
+        public void AddCards(List<Card> cards)
         {
             for (int i = 0; i < cards.Count; i++)
             {
