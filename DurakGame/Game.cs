@@ -102,7 +102,41 @@ namespace DurakGame
                 Defender = Player1;
             }
         }
-        private void MakeMove(Player player, Card card)
+        public bool MakeMove(Player player, Card card)
+        {
+            if (player == Defender) return false;
+            if (player.HasCard(card) == false) return false;
+
+            if (tableCards.Count > 0) //Проверка, можно ли подкинуть карту
+            {
+                bool canAdd=false;
+                for (int i = 0; i < tableCards.Count; i++)
+                {
+                    if (tableCards[i].Rank == card.Rank)
+                    {
+                        canAdd = true;
+                        break;
+                    }
+                }
+                if (!canAdd) return false;
+            }
+            //Если все проверки пройдены
+            player.RemoveCard(card);//Удаляем карту из руки
+            tableCards.Add(card);//Добавляем карту на стол
+            return true;
+        }
+        public bool Defend (Player player, Card attackingCard, Card defendingCard)
+        {
+            if (player != Defender) return false;
+            if (!player.HasCard(defendingCard)) return false;
+            if(!tableCards.Contains(attackingCard)) return false;
+            if(!defendingCard.CanBeat(attackingCard, TrumpSuit)) return false;
+
+            player.RemoveCard(defendingCard);
+            tableCards.Add(defendingCard);
+            return true;
+        }
+        public void TakeCards(Player player)
         {
 
         }
