@@ -7,19 +7,19 @@ namespace DurakGame
     {
         private Deck deck;
         private Card trumpCard;//Козырная карта
-        private List <Card> tableCards;//Карты на столе
+        private List<Card> tableCards;//Карты на столе
         private List<Card> discardPile;//Битые карты
         public Player Player1 { get; private set; }
         public Player Player2 { get; private set; }
         public Player Attacker { get; private set; }
-        public Player Defender {  get; private set; }
-        public string TrumpSuit {  get; private set; }
+        public Player Defender { get; private set; }
+        public string TrumpSuit { get; private set; }
 
         public Game()
         {
             Player1 = new Player();
             Player2 = new Player();
-            deck= new Deck();
+            deck = new Deck();
             tableCards = new List<Card>();
             discardPile = new List<Card>();
         }
@@ -31,8 +31,8 @@ namespace DurakGame
 
             tableCards.Clear();
             discardPile.Clear();
-            
-            deck=new Deck();
+
+            deck = new Deck();
             deck.Shuffle();//Перемешивание колоды
 
             trumpCard = deck.PeekCard();//Определение козырной карты(нижняя в колоде)
@@ -52,9 +52,9 @@ namespace DurakGame
             Card lowestTrump2 = null;
             for (int i = 0; i < hand1.Count; i++)
             {
-                if (hand1[i].Suit==TrumpSuit)
+                if (hand1[i].Suit == TrumpSuit)
                 {
-                    if (lowestTrump1 == null || hand1[i].Rank<lowestTrump1.Rank) lowestTrump1=hand1[i];
+                    if (lowestTrump1 == null || hand1[i].Rank < lowestTrump1.Rank) lowestTrump1 = hand1[i];
                 }
             }
             for (int i = 0; i < hand2.Count; i++)
@@ -109,7 +109,7 @@ namespace DurakGame
 
             if (tableCards.Count > 0) //Проверка, можно ли подкинуть карту
             {
-                bool canAdd=false;
+                bool canAdd = false;
                 for (int i = 0; i < tableCards.Count; i++)
                 {
                     if (tableCards[i].Rank == card.Rank)
@@ -125,12 +125,12 @@ namespace DurakGame
             tableCards.Add(card);//Добавляем карту на стол
             return true;
         }
-        public bool Defend (Player player, Card attackingCard, Card defendingCard)
+        public bool Defend(Player player, Card attackingCard, Card defendingCard)
         {
             if (player != Defender) return false;
             if (!player.HasCard(defendingCard)) return false;
-            if(!tableCards.Contains(attackingCard)) return false;
-            if(!defendingCard.CanBeat(attackingCard, TrumpSuit)) return false;
+            if (!tableCards.Contains(attackingCard)) return false;
+            if (!defendingCard.CanBeat(attackingCard, TrumpSuit)) return false;
 
             player.RemoveCard(defendingCard);
             tableCards.Add(defendingCard);
@@ -138,7 +138,67 @@ namespace DurakGame
         }
         public void TakeCards(Player player)
         {
+            if (!(player == Defender)) return;
+            if (tableCards.Count == 0) return;
 
+            for (int i = 0; i < tableCards.Count; i++)
+            {
+                player.AddCard(tableCards[i]);
+            }
+            tableCards.Clear();
+            DrawCardsAfterRound();
+        }
+        private void DrawCardsAfterRound()
+        {
+            while (Attacker.CardCount() < 6 && deck.Count() > 0)
+            {
+                Card card = deck.Drawcard();
+                if (card != null)
+                {
+                    Attacker.AddCard(card);
+                }
+            }
+            while (Defender.CardCount() < 6 && deck.Count() > 0)
+            {
+                Card card = deck.Drawcard();
+                if (card != null)
+                {
+                    Defender.AddCard(card);
+                }
+            }
+        }
+        public void FinishRound()
+        {
+            if (tableCards.Count == 0) return;
+
+            for (int i = 0; i < tableCards.Count; i++)
+            {
+                discardPile.Add(tableCards[i]);
+            }
+            tableCards.Clear();
+
+            DrawCardsAfterRound();
+            Player temp = Attacker;
+            Attacker = Defender;
+            Defender = temp;
+        }
+        public Player CheckWinner()
+        {
+            if (Player1.CardCount() == 0 && deck.Count()==0) return Player1;
+            if (Player2.CardCount() == 0 && deck.Count() == 0) return Player2;
+            return null;
+        }
+        public List<Card> GetTableCards()
+        {
+            return tableCards;
+        }
+        public Card GetTrumpCard()
+        {
+            return trumpCard;
+        }
+        public int DeckCount()
+        {
+            return deck.Count();
         }
     }
 }
