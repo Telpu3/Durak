@@ -82,11 +82,6 @@ namespace K
                 this.Text = "Выбрана " + selectedCard.Name;
             }
         }
-        private void ComputerTurn()
-        {
-
-        }
-
         private void firstTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = firstTable.SelectedIndex;
@@ -109,6 +104,32 @@ namespace K
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
+        {
+            if (selectedCard==null)
+            {
+                MessageBox.Show("Сначала выберите карту!");
+                return;
+            }
+            if (game.MakeMove(game.Player1, selectedCard))
+            {
+                selectedCard = null;
+                UpdateUI();
+                Player winner = game.CheckWinner();
+                if (winner != null)
+                {
+                    if (winner == game.Player1) MessageBox.Show("Победил игрок!");
+                    else MessageBox.Show("Победил компьютер!");
+                }
+                else ComputerTurn();
+
+            }
+            else
+            {
+                MessageBox.Show("Этой картой нельзя сейчас ходить!");
+                return;
+            }
+        }
+        private void ComputerTurn()
         {
 
         }
