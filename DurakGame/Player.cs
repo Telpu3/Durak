@@ -5,12 +5,12 @@ namespace DurakGame
 {
     public class Player
     {
-        private List<Card> hand;
+        private List<Card> hand;//Карты в руке игрока
         public Player()
         {
             hand = new List<Card>();
         }
-        public void AddCard(Card card)
+        public void AddCard(Card card)//Добавление карты в руку
         {
             hand.Add(card);
         }
@@ -21,7 +21,7 @@ namespace DurakGame
                 hand.Add(cards[i]);
             }
         }
-        public void RemoveCard(Card card)
+        public void RemoveCard(Card card)//Удаление карты из руки
         {
             hand.Remove(card);
         }
@@ -29,11 +29,11 @@ namespace DurakGame
         {
             return hand;
         }
-        public int CardCount()
+        public int CardCount()//Возвращает кол-во карт в руке
         {
             return hand.Count;
         }
-        public bool HasCard(Card card)
+        public bool HasCard(Card card)//Определяет, есть ли карта в руке 
         {
             for (int i = 0;i < hand.Count;i++)
             {
@@ -41,7 +41,7 @@ namespace DurakGame
             }
             return false;
         }
-        public void ClearHand()
+        public void ClearHand()//Очистка карт в руке
         {
             hand.Clear();
         }

@@ -8,12 +8,13 @@ namespace DurakGame
         private List<Card> cards;
         private Random random;
 
-        public Deck()
+        public Deck()//Создание колоды
         {
             cards = new List<Card>();
             random = new Random();
             Create36Cards();
         }
+        //Создание колоды из 36 карт
         private void Create36Cards()
         {
             string[] suits = new string[] { "Черви", "Буби", "Крести", "Пики" };
@@ -28,6 +29,7 @@ namespace DurakGame
                 }
             }
         }
+        //Перемешивание колоды(алгоритм Фишера-Йетса)
         public void Shuffle()
         {
             int n = cards.Count;
@@ -40,7 +42,7 @@ namespace DurakGame
                 cards[n] = temp;
             }
         }
-
+        //Метод берёт верхнюю карту из колоды и удаляет её оттуда
         public Card Drawcard()
         {
             if (cards.Count == 0) return null;
@@ -49,6 +51,7 @@ namespace DurakGame
             cards.RemoveAt(cards.Count - 1);
             return topcard;
         }
+        // Метод берёт сразу несколько карт из колоды
         public List<Card> DrawCards(int count)
         {
             List<Card> drawncards = new List<Card>();
@@ -59,11 +62,13 @@ namespace DurakGame
             }
             return drawncards;
         }
+        // Метод позволяет посмотреть верхнюю карту колоды, НЕ удаляя её
         public Card PeekCard()
         {
             if (cards.Count == 0) return null;
             return cards[cards.Count - 1];
         }
+        // Метод возвращает количество оставшихся карт в колоде 
         public int Count()
         {
             return cards.Count;

@@ -6,9 +6,9 @@ namespace DurakGame
     public class Game
     {
         private Deck deck;
-        private Card trumpCard;
-        private List <Card> tableCards;
-        private List<Card> discardPile;
+        private Card trumpCard;//Козырная карта
+        private List <Card> tableCards;//Карты на столе
+        private List<Card> discardPile;//Битые карты
         public Player Player1 { get; private set; }
         public Player Player2 { get; private set; }
         public Player Attacker { get; private set; }
@@ -23,6 +23,7 @@ namespace DurakGame
             tableCards = new List<Card>();
             discardPile = new List<Card>();
         }
+        //Начало игры
         public void StartNewGame()
         {
             Player1.ClearHand();
@@ -32,16 +33,17 @@ namespace DurakGame
             discardPile.Clear();
             
             deck=new Deck();
-            deck.Shuffle();
+            deck.Shuffle();//Перемешивание колоды
 
-            trumpCard = deck.PeekCard();
-            TrumpSuit = trumpCard.Suit;
+            trumpCard = deck.PeekCard();//Определение козырной карты(нижняя в колоде)
+            TrumpSuit = trumpCard.Suit;//Определение козырной масти
 
-            Player1.AddCards(deck.DrawCards(6));
+            Player1.AddCards(deck.DrawCards(6));//Раздача первых 6 карт
             Player2.AddCards(deck.DrawCards(6));
 
             DetermineFirstAttacker();
         }
+        //===Определение первого хода=== 
         private void DetermineFirstAttacker()
         {
             List<Card> hand1 = Player1.GetHand();

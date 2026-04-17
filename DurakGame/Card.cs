@@ -2,11 +2,11 @@
 {
     public class Card
     {
-        public string Suit { get; private set; }
+        public string Suit { get; private set; }//Масть
 
-        public int Rank { get; private set; }
+        public int Rank { get; private set; }//Ранг карты
 
-        public string Name {  get; private set; }
+        public string Name {  get; private set; }//Полное название карты
 
         public Card(string suit, int rank)
         {
@@ -27,6 +27,7 @@
             if (rank == 14) return "Туз";
             return rank.ToString();
         }
+        //Определяет, может ли одна карта побить другую
         public bool CanBeat(Card othercard, string trumpSuit)
         {
             if (this.Suit == othercard.Suit)
