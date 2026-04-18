@@ -169,8 +169,16 @@ namespace K
             }
             bool res = game.Defend(game.Defender, selectedTableCard, selectedCard);
             if (res == false)
-            {
+            {   
                 MessageBox.Show("Этой картой нельзя побить");
+
+                firstTable.Items.Clear();
+                List<Card> table = game.GetTableCards();
+                for (int i = 0; i < table.Count; i++)
+                {
+                    firstTable.Items.Add(table[i].Name);
+                }
+
                 return;
             }
             else
@@ -329,7 +337,7 @@ namespace K
         }
         private async Task Pause()
         {
-            await Task.Delay(10000); 
+            await Task.Delay(40000); 
         }
         private async void ComputerDefend(int depth = 0)
         {
@@ -379,7 +387,7 @@ namespace K
         }
         private async Task ThinkPause()
         {
-            await Task.Delay(300); // 0.3 секунды
+            await Task.Delay(100); // 0.1 секунда
         }
     }
 }
