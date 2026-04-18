@@ -38,6 +38,7 @@
             lblTrump = new Label();
             lblDeck = new Label();
             lblTurn = new Label();
+            btnDefend = new Button();
             SuspendLayout();
             // 
             // btnNewGame
@@ -52,21 +53,23 @@
             // 
             // btnTake
             // 
-            btnTake.Location = new Point(189, 296);
+            btnTake.Location = new Point(193, 226);
             btnTake.Name = "btnTake";
             btnTake.Size = new Size(94, 29);
             btnTake.TabIndex = 1;
             btnTake.Text = "Забрать";
             btnTake.UseVisualStyleBackColor = true;
+            btnTake.Click += btnTake_Click;
             // 
             // btnFinish
             // 
-            btnFinish.Location = new Point(477, 296);
+            btnFinish.Location = new Point(193, 284);
             btnFinish.Name = "btnFinish";
             btnFinish.Size = new Size(94, 29);
             btnFinish.TabIndex = 2;
             btnFinish.Text = "Бито";
             btnFinish.UseVisualStyleBackColor = true;
+            btnFinish.Click += btnFinish_Click;
             // 
             // firstPlayerHand
             // 
@@ -96,7 +99,7 @@
             // 
             // btnAttack
             // 
-            btnAttack.Location = new Point(332, 296);
+            btnAttack.Location = new Point(497, 226);
             btnAttack.Name = "btnAttack";
             btnAttack.Size = new Size(94, 29);
             btnAttack.TabIndex = 6;
@@ -132,11 +135,22 @@
             lblTurn.TabIndex = 9;
             lblTurn.Text = "label1";
             // 
+            // btnDefend
+            // 
+            btnDefend.Location = new Point(497, 284);
+            btnDefend.Name = "btnDefend";
+            btnDefend.Size = new Size(94, 29);
+            btnDefend.TabIndex = 10;
+            btnDefend.Text = "Защита";
+            btnDefend.UseVisualStyleBackColor = true;
+            btnDefend.Click += btnDefend_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnDefend);
             Controls.Add(lblTurn);
             Controls.Add(lblDeck);
             Controls.Add(lblTrump);
@@ -166,5 +180,6 @@
         private Label lblTrump;
         private Label lblDeck;
         private Label lblTurn;
+        private Button btnDefend;
     }
 }
