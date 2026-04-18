@@ -133,19 +133,20 @@ namespace K
         private void ComputerTurn()
         {
             Player winner = game.CheckWinner();
+            if (winner != null) return;
 
-            if (winner != null)
-            {
-                return;
-            }
-            if (game.Attacker == game.Player2) ComputerAttack();
-            if (game.Defender == game.Player2) ComputerDefend();
-            UpdateUI();
+            if (game.Attacker == game.Player2)
+                ComputerAttack();
+            else if (game.Defender == game.Player2)
+                ComputerDefend();
+
             winner = game.CheckWinner();
             if (winner != null)
             {
-                if (winner == game.Player1) MessageBox.Show("Победил игрок!");
-                else MessageBox.Show("Победил компьютер!");
+                if (winner == game.Player1)
+                    MessageBox.Show("Победил игрок!");
+                else
+                    MessageBox.Show("Победил компьютер!");
             }
         }
 
@@ -231,12 +232,12 @@ namespace K
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            if (game.Player1!=game.Attacker)
+            if (game.Player1 != game.Attacker)
             {
                 MessageBox.Show("Вы не можете завершить раунд, вы защищаетесь");
                 return;
             }
-            if (game.GetTableCards().Count==0)
+            if (game.GetTableCards().Count == 0)
             {
                 MessageBox.Show("Стол пустой!");
                 return;
@@ -263,21 +264,23 @@ namespace K
                 ComputerTurn();
             }
         }
-        private void ComputerAttack(int depth = 0)
+        private async void ComputerAttack(int depth = 0)
         {
             if (depth > 6) return;
             Card card = ComputerGetAttackCard();
-            if (card!=null)
+            if (card != null)
             {
                 game.MakeMove(game.Player2, card);
                 UpdateUI();
-                Pause();
-                ComputerAttack(depth+1);
+                await Pause();
+                ComputerAttack(depth + 1);
             }
             else
             {
+                await ThinkPause();
                 game.FinishRound();
                 UpdateUI();
+                await Pause();
             }
         }
         private Card ComputerGetAttackCard()
@@ -324,15 +327,15 @@ namespace K
             }
             return null;
         }
-        private async void Pause()
+        private async Task Pause()
         {
-            await Task.Delay(1000); // пауза 1 секунда
+            await Task.Delay(10000); 
         }
-        private void ComputerDefend(int depth = 0)
+        private async void ComputerDefend(int depth = 0)
         {
             if (depth > 6) return;
             Card notbeatCard = null;
-            List <Card> table = game.GetTableCards();
+            List<Card> table = game.GetTableCards();
             if (table.Count == 0) return;
             if (table.Count % 2 == 0) return;//Карты лежат парами, отбивать нечего
             else
@@ -341,24 +344,42 @@ namespace K
 
             }
             List<Card> hand = game.Player2.GetHand();
-            List<Card> canbeat = null;
-            for (int i=0; i<hand.Count; i++)
+            List<Card> canbeat = new List<Card>();
+            for (int i = 0; i < hand.Count; i++)
             {
                 if (hand[i].CanBeat(notbeatCard, game.TrumpSuit)) canbeat.Add(hand[i]);
             }
-            if (canbeat != null)
+            if (canbeat.Count > 0)
             {
+                await ThinkPause();   // Думает
                 game.Defend(game.Player2, notbeatCard, canbeat[0]);
-                Pause();
                 UpdateUI();
+                await Pause();        // Показывает
                 ComputerDefend(depth + 1);
             }
             else
             {
-                game.TakeCards(game.Player2);//Отбить нечем - забираем карты
+                await ThinkPause();   // Думает
+                game.TakeCards(game.Player2);
                 UpdateUI();
+                await Pause();        // Показывает
+
+                // После взятия карт, если атакующий всё ещё компьютер — продолжаем атаку
+                if (game.Attacker == game.Player2)
+                {
+                    ComputerAttack();
+                }
                 return;
             }
+        }
+
+        private void firstComputerHand_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private async Task ThinkPause()
+        {
+            await Task.Delay(300); // 0.3 секунды
         }
     }
 }
