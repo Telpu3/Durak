@@ -2,12 +2,12 @@ using DurakGame;
 using System.Threading.Tasks;
 namespace K
 {
-    public partial class Form1 : Form
+    public partial class Durak : Form
     {
         private Game game;
         private Card selectedCard = null;
         private Card selectedTableCard = null;
-        public Form1()
+        public Durak()
         {
             InitializeComponent();
             game = new Game();

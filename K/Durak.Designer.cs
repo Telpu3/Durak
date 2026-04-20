@@ -1,6 +1,6 @@
 ﻿namespace K
 {
-    partial class Form1
+    partial class Durak
     {
         /// <summary>
         ///  Required designer variable.
