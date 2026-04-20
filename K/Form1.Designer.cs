@@ -39,6 +39,7 @@
             lblDeck = new Label();
             lblTurn = new Label();
             btnDefend = new Button();
+            txtLog = new TextBox();
             SuspendLayout();
             // 
             // btnNewGame
@@ -169,12 +170,26 @@
             btnDefend.UseVisualStyleBackColor = false;
             btnDefend.Click += btnDefend_Click;
             // 
+            // txtLog
+            // 
+            txtLog.BackColor = Color.Black;
+            txtLog.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            txtLog.ForeColor = Color.Lime;
+            txtLog.Location = new Point(293, 47);
+            txtLog.Multiline = true;
+            txtLog.Name = "txtLog";
+            txtLog.ReadOnly = true;
+            txtLog.ScrollBars = ScrollBars.Vertical;
+            txtLog.Size = new Size(264, 87);
+            txtLog.TabIndex = 11;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
             ClientSize = new Size(800, 450);
+            Controls.Add(txtLog);
             Controls.Add(btnDefend);
             Controls.Add(lblTurn);
             Controls.Add(lblDeck);
@@ -208,5 +223,6 @@
         private Label lblDeck;
         private Label lblTurn;
         private Button btnDefend;
+        private TextBox txtLog;
     }
 }
