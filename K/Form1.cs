@@ -24,15 +24,7 @@ namespace K
             selectedCard = null;
             selectedTableCard = null;
             UpdateUI();
-            txtLog.Clear();
-            AddLog("=== НОВАЯ ИГРА ===");
-            AddLog($"Козырь: {game.TrumpSuit}");
-            AddLog($"Колода: 36 карт");
-
-            if (game.Attacker == game.Player1)
-                AddLog("Первым ходит: Игрок");
-            else
-                AddLog("Первым ходит: Компьютер");
+            
             if (game.Attacker == game.Player2)
             {
                 ComputerTurn();
@@ -116,19 +108,16 @@ namespace K
         {
             if (selectedCard == null)
             {
-                AddLog("Ошибка: не выбрана карта");
                 MessageBox.Show("Сначала выберите карту!");
                 return;
             }
             if (game.MakeMove(game.Player1, selectedCard))
             {
-                AddLog($"Игрок походил: {selectedCard.Name}");
                 selectedCard = null;
                 UpdateUI();
                 Player winner = game.CheckWinner();
                 if (winner != null)
                 {
-                    AddLog(winner == game.Player1 ? "=== ИГРОК ПОБЕДИЛ ===" : "=== КОМПЬЮТЕР ПОБЕДИЛ ===");
                     MessageBox.Show(winner == game.Player1 ? "Победил игрок!" : "Победил компьютер!");
                 }
                 else ComputerTurn();
@@ -144,7 +133,6 @@ namespace K
         {
             Player winner = game.CheckWinner();
             if (winner != null) return;
-            AddLog("--- Ход компьютера ---");
             if (game.Attacker == game.Player2)
                 ComputerAttack();
             else if (game.Defender == game.Player2)
@@ -180,7 +168,6 @@ namespace K
             bool res = game.Defend(game.Defender, selectedTableCard, selectedCard);
             if (res == false)
             {
-                AddLog($"Нельзя побить: {selectedCard.Name} против {selectedTableCard.Name}");
                 MessageBox.Show("Этой картой нельзя побить");
 
                 firstTable.Items.Clear();
@@ -194,7 +181,6 @@ namespace K
             }
             else
             {
-                AddLog($"Игрок отбился: {selectedCard.Name} побил {selectedTableCard.Name}");
                 selectedCard = null;
                 selectedTableCard = null;
                 Player winner = game.CheckWinner();
@@ -228,9 +214,7 @@ namespace K
                 MessageBox.Show("Забирать нечего(");
                 return;
             }
-            int count = game.GetTableCards().Count;
             game.TakeCards(game.Player1);
-            AddLog($"Игрок забрал {count} карт со стола");
             selectedCard = null;
             selectedTableCard = null;
             UpdateUI();
@@ -264,10 +248,8 @@ namespace K
                 MessageBox.Show("Стол пустой!");
                 return;
             }
-            AddLog("Игрок сказал: Бито!");
             game.FinishRound();
-            AddLog($"Раунд завершён. Теперь атакует: {(game.Attacker == game.Player1 ? "Игрок" : "Компьютер")}");
-            selectedTableCard = null;
+;           selectedTableCard = null;
             selectedCard = null;
             UpdateUI();
 
@@ -296,16 +278,13 @@ namespace K
             {
                 game.MakeMove(game.Player2, card);
                 UpdateUI();
-                AddLog($"Компьютер походил: {card.Name}");
                 await Pause();
             }
             else
             {
-                AddLog("Компьютер не может подкинуть. Бито!");
                 await ThinkPause();
                 game.FinishRound();
                 UpdateUI();
-                AddLog($"Раунд завершён. Теперь атакует: {(game.Attacker == game.Player1 ? "Игрок" : "Компьютер")}");
                 await Pause();
 
                 if (game.Attacker == game.Player2)
@@ -389,7 +368,6 @@ namespace K
             }
             else
             {
-                AddLog("Компьютер не может отбиться");
                 await ThinkPause();   // Думает
                 game.TakeCards(game.Player2);
                 UpdateUI();
@@ -412,12 +390,6 @@ namespace K
         private async Task ThinkPause()
         {
             await Task.Delay(100); // 0.1 секунда
-        }
-
-        private void AddLog(string message)
-        {
-            string time = DateTime.Now.ToString("HH:mm:ss");
-            txtLog.AppendText($"[{time}] {message}{Environment.NewLine}");
         }
     }
 }
