@@ -10,12 +10,18 @@ namespace K
         public Durak()
         {
             InitializeComponent();
+
+            // Шрифт
+            Font cardFont = new Font("Segoe UI", 20, FontStyle.Bold);
+            firstPlayerHand.Font = cardFont;
+            firstComputerHand.Font = cardFont;
+            firstTable.Font = cardFont;
+
             game = new Game();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Durak_Load(object sender, EventArgs e)
         {
-
         }
 
         private void btnNewGame_Click(object sender, EventArgs e)
@@ -39,19 +45,19 @@ namespace K
 
             for (int i = 0; i < playerCards.Count; i++)
             {
-                firstPlayerHand.Items.Add(playerCards[i].Name);
+                firstPlayerHand.Items.Add(playerCards[i].ToShortString());
             }
 
             for (int i = 0; i < game.Player2.CardCount(); i++)
             {
-                firstComputerHand.Items.Add("🂠 Карта");
+                firstComputerHand.Items.Add("🂠");
             }
 
             List<Card> table = game.GetTableCards();
 
             for (int i = 0; i < table.Count; i++)
             {
-                firstTable.Items.Add(table[i].Name);
+                firstTable.Items.Add(table[i].ToShortString());
             }
 
             lblTrump.Text = "Козырь: " + game.TrumpSuit;
@@ -390,6 +396,18 @@ namespace K
         private async Task ThinkPause()
         {
             await Task.Delay(100); // 0.1 секунда
+        }
+        private void ColorDrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            ListBox lb = (ListBox)sender;
+            string text = lb.Items[e.Index].ToString();
+
+            Color c = text.EndsWith("♥") || text.EndsWith("♦") ? Color.Red : Color.Black;
+
+            e.DrawBackground();
+            TextRenderer.DrawText(e.Graphics, text, e.Font, e.Bounds, c, Color.Empty);
         }
     }
 }

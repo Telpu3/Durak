@@ -38,5 +38,32 @@
             if (this.Suit == trumpSuit) return true;
             return false;
         }
+        public string ToShortString()
+        {
+            string rankStr = Rank switch
+            {
+                6 => "6",
+                7 => "7",
+                8 => "8",
+                9 => "9",
+                10 => "10",
+                11 => "В",
+                12 => "Д",
+                13 => "К",
+                14 => "Т",
+                _ => Rank.ToString()
+            };
+
+            string suitSymbol = Suit switch
+            {
+                "Черви" => "♥️",
+                "Буби" => "♦️",
+                "Крести" => "♣️",
+                "Пики" => "♠️",
+                _ => Suit
+            };
+
+            return rankStr + " " + suitSymbol;
+        }
     }
 }

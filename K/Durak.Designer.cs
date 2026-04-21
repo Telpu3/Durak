@@ -43,9 +43,10 @@
             // 
             // btnNewGame
             // 
-            btnNewGame.Location = new Point(-2, -1);
+            btnNewGame.Location = new Point(-5, -3);
+            btnNewGame.Margin = new Padding(6, 6, 6, 6);
             btnNewGame.Name = "btnNewGame";
-            btnNewGame.Size = new Size(177, 29);
+            btnNewGame.Size = new Size(354, 54);
             btnNewGame.TabIndex = 0;
             btnNewGame.Text = "Новая игра";
             btnNewGame.UseVisualStyleBackColor = true;
@@ -55,9 +56,10 @@
             // 
             btnTake.BackColor = Color.LightGoldenrodYellow;
             btnTake.FlatStyle = FlatStyle.Flat;
-            btnTake.Location = new Point(143, 151);
+            btnTake.Location = new Point(280, 184);
+            btnTake.Margin = new Padding(6, 6, 6, 6);
             btnTake.Name = "btnTake";
-            btnTake.Size = new Size(100, 40);
+            btnTake.Size = new Size(200, 74);
             btnTake.TabIndex = 1;
             btnTake.Text = "Забрать";
             btnTake.UseVisualStyleBackColor = false;
@@ -67,9 +69,10 @@
             // 
             btnFinish.BackColor = Color.LightGoldenrodYellow;
             btnFinish.FlatStyle = FlatStyle.Flat;
-            btnFinish.Location = new Point(293, 151);
+            btnFinish.Location = new Point(581, 184);
+            btnFinish.Margin = new Padding(6, 6, 6, 6);
             btnFinish.Name = "btnFinish";
-            btnFinish.Size = new Size(100, 40);
+            btnFinish.Size = new Size(200, 74);
             btnFinish.TabIndex = 2;
             btnFinish.Text = "Бито";
             btnFinish.UseVisualStyleBackColor = false;
@@ -79,11 +82,12 @@
             // 
             firstPlayerHand.BackColor = Color.LightGray;
             firstPlayerHand.BorderStyle = BorderStyle.FixedSingle;
-            firstPlayerHand.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            firstPlayerHand.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             firstPlayerHand.FormattingEnabled = true;
-            firstPlayerHand.Location = new Point(43, 223);
+            firstPlayerHand.Location = new Point(85, 322);
+            firstPlayerHand.Margin = new Padding(6, 6, 6, 6);
             firstPlayerHand.Name = "firstPlayerHand";
-            firstPlayerHand.Size = new Size(185, 177);
+            firstPlayerHand.Size = new Size(368, 281);
             firstPlayerHand.TabIndex = 3;
             firstPlayerHand.SelectedIndexChanged += firstPlayerHand_SelectedIndexChanged;
             // 
@@ -91,11 +95,12 @@
             // 
             firstComputerHand.BackColor = Color.LightGray;
             firstComputerHand.BorderStyle = BorderStyle.FixedSingle;
-            firstComputerHand.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            firstComputerHand.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             firstComputerHand.FormattingEnabled = true;
-            firstComputerHand.Location = new Point(580, 223);
+            firstComputerHand.Location = new Point(1157, 322);
+            firstComputerHand.Margin = new Padding(6, 6, 6, 6);
             firstComputerHand.Name = "firstComputerHand";
-            firstComputerHand.Size = new Size(185, 177);
+            firstComputerHand.Size = new Size(368, 281);
             firstComputerHand.TabIndex = 4;
             firstComputerHand.SelectedIndexChanged += firstComputerHand_SelectedIndexChanged;
             // 
@@ -103,11 +108,12 @@
             // 
             firstTable.BackColor = Color.LightGray;
             firstTable.BorderStyle = BorderStyle.FixedSingle;
-            firstTable.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            firstTable.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             firstTable.FormattingEnabled = true;
-            firstTable.Location = new Point(313, 223);
+            firstTable.Location = new Point(619, 322);
+            firstTable.Margin = new Padding(6, 6, 6, 6);
             firstTable.Name = "firstTable";
-            firstTable.Size = new Size(185, 177);
+            firstTable.Size = new Size(368, 281);
             firstTable.TabIndex = 5;
             firstTable.SelectedIndexChanged += firstTable_SelectedIndexChanged;
             // 
@@ -115,9 +121,10 @@
             // 
             btnAttack.BackColor = Color.LightGoldenrodYellow;
             btnAttack.FlatStyle = FlatStyle.Flat;
-            btnAttack.Location = new Point(457, 151);
+            btnAttack.Location = new Point(907, 184);
+            btnAttack.Margin = new Padding(6, 6, 6, 6);
             btnAttack.Name = "btnAttack";
-            btnAttack.Size = new Size(100, 40);
+            btnAttack.Size = new Size(200, 74);
             btnAttack.TabIndex = 6;
             btnAttack.Text = "Ход";
             btnAttack.UseVisualStyleBackColor = false;
@@ -126,22 +133,24 @@
             // lblTrump
             // 
             lblTrump.AutoSize = true;
-            lblTrump.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            lblTrump.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblTrump.ForeColor = Color.Gold;
-            lblTrump.Location = new Point(202, 3);
+            lblTrump.Location = new Point(405, 6);
+            lblTrump.Margin = new Padding(6, 0, 6, 0);
             lblTrump.Name = "lblTrump";
-            lblTrump.Size = new Size(80, 25);
+            lblTrump.Size = new Size(121, 38);
             lblTrump.TabIndex = 7;
             lblTrump.Text = "Козырь";
             // 
             // lblDeck
             // 
             lblDeck.AutoSize = true;
-            lblDeck.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
+            lblDeck.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblDeck.ForeColor = Color.Gold;
-            lblDeck.Location = new Point(387, 3);
+            lblDeck.Location = new Point(774, 6);
+            lblDeck.Margin = new Padding(6, 0, 6, 0);
             lblDeck.Name = "lblDeck";
-            lblDeck.Size = new Size(78, 25);
+            lblDeck.Size = new Size(118, 38);
             lblDeck.TabIndex = 8;
             lblDeck.Text = "Колода";
             lblDeck.Click += lblDeck_Click;
@@ -149,11 +158,12 @@
             // lblTurn
             // 
             lblTurn.AutoSize = true;
-            lblTurn.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold);
+            lblTurn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
             lblTurn.ForeColor = Color.Gold;
-            lblTurn.Location = new Point(595, 3);
+            lblTurn.Location = new Point(1190, 6);
+            lblTurn.Margin = new Padding(6, 0, 6, 0);
             lblTurn.Name = "lblTurn";
-            lblTurn.Size = new Size(89, 25);
+            lblTurn.Size = new Size(135, 38);
             lblTurn.TabIndex = 9;
             lblTurn.Text = "Очередь";
             // 
@@ -161,20 +171,21 @@
             // 
             btnDefend.BackColor = Color.LightGoldenrodYellow;
             btnDefend.FlatStyle = FlatStyle.Flat;
-            btnDefend.Location = new Point(595, 151);
+            btnDefend.Location = new Point(1184, 184);
+            btnDefend.Margin = new Padding(6, 6, 6, 6);
             btnDefend.Name = "btnDefend";
-            btnDefend.Size = new Size(100, 40);
+            btnDefend.Size = new Size(200, 74);
             btnDefend.TabIndex = 10;
             btnDefend.Text = "Защита";
             btnDefend.UseVisualStyleBackColor = false;
             btnDefend.Click += btnDefend_Click;
             // 
-            // Form1
+            // Durak
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(16F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1608, 707);
             Controls.Add(btnDefend);
             Controls.Add(lblTurn);
             Controls.Add(lblDeck);
@@ -186,11 +197,13 @@
             Controls.Add(btnFinish);
             Controls.Add(btnTake);
             Controls.Add(btnNewGame);
+            Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Form1";
+            Margin = new Padding(6, 6, 6, 6);
+            Name = "Durak";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Дурак";
-            Load += Form1_Load;
+            Load += Durak_Load;
             ResumeLayout(false);
             PerformLayout();
         }
