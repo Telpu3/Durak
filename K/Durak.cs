@@ -124,7 +124,7 @@ namespace K
                 Player winner = game.CheckWinner();
                 if (winner != null)
                 {
-                    MessageBox.Show(winner == game.Player1 ? "Победил игрок!" : "Победил компьютер!");
+                    MessageBox.Show(winner == game.Player1 ? "Вы выиграли!" : "Победил компьютер!");
                 }
                 else ComputerTurn();
 
