@@ -44,7 +44,7 @@
             // btnNewGame
             // 
             btnNewGame.Location = new Point(-5, -3);
-            btnNewGame.Margin = new Padding(6, 6, 6, 6);
+            btnNewGame.Margin = new Padding(6);
             btnNewGame.Name = "btnNewGame";
             btnNewGame.Size = new Size(354, 54);
             btnNewGame.TabIndex = 0;
@@ -57,7 +57,7 @@
             btnTake.BackColor = Color.LightGoldenrodYellow;
             btnTake.FlatStyle = FlatStyle.Flat;
             btnTake.Location = new Point(280, 184);
-            btnTake.Margin = new Padding(6, 6, 6, 6);
+            btnTake.Margin = new Padding(6);
             btnTake.Name = "btnTake";
             btnTake.Size = new Size(200, 74);
             btnTake.TabIndex = 1;
@@ -70,7 +70,7 @@
             btnFinish.BackColor = Color.LightGoldenrodYellow;
             btnFinish.FlatStyle = FlatStyle.Flat;
             btnFinish.Location = new Point(581, 184);
-            btnFinish.Margin = new Padding(6, 6, 6, 6);
+            btnFinish.Margin = new Padding(6);
             btnFinish.Name = "btnFinish";
             btnFinish.Size = new Size(200, 74);
             btnFinish.TabIndex = 2;
@@ -84,10 +84,10 @@
             firstPlayerHand.BorderStyle = BorderStyle.FixedSingle;
             firstPlayerHand.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             firstPlayerHand.FormattingEnabled = true;
-            firstPlayerHand.Location = new Point(85, 322);
-            firstPlayerHand.Margin = new Padding(6, 6, 6, 6);
+            firstPlayerHand.Location = new Point(482, 322);
+            firstPlayerHand.Margin = new Padding(6);
             firstPlayerHand.Name = "firstPlayerHand";
-            firstPlayerHand.Size = new Size(368, 281);
+            firstPlayerHand.Size = new Size(95, 281);
             firstPlayerHand.TabIndex = 3;
             firstPlayerHand.SelectedIndexChanged += firstPlayerHand_SelectedIndexChanged;
             // 
@@ -97,10 +97,10 @@
             firstComputerHand.BorderStyle = BorderStyle.FixedSingle;
             firstComputerHand.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             firstComputerHand.FormattingEnabled = true;
-            firstComputerHand.Location = new Point(1157, 322);
-            firstComputerHand.Margin = new Padding(6, 6, 6, 6);
+            firstComputerHand.Location = new Point(1102, 322);
+            firstComputerHand.Margin = new Padding(6);
             firstComputerHand.Name = "firstComputerHand";
-            firstComputerHand.Size = new Size(368, 281);
+            firstComputerHand.Size = new Size(86, 281);
             firstComputerHand.TabIndex = 4;
             firstComputerHand.SelectedIndexChanged += firstComputerHand_SelectedIndexChanged;
             // 
@@ -110,10 +110,10 @@
             firstTable.BorderStyle = BorderStyle.FixedSingle;
             firstTable.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
             firstTable.FormattingEnabled = true;
-            firstTable.Location = new Point(619, 322);
-            firstTable.Margin = new Padding(6, 6, 6, 6);
+            firstTable.Location = new Point(788, 322);
+            firstTable.Margin = new Padding(6);
             firstTable.Name = "firstTable";
-            firstTable.Size = new Size(368, 281);
+            firstTable.Size = new Size(104, 281);
             firstTable.TabIndex = 5;
             firstTable.SelectedIndexChanged += firstTable_SelectedIndexChanged;
             // 
@@ -122,7 +122,7 @@
             btnAttack.BackColor = Color.LightGoldenrodYellow;
             btnAttack.FlatStyle = FlatStyle.Flat;
             btnAttack.Location = new Point(907, 184);
-            btnAttack.Margin = new Padding(6, 6, 6, 6);
+            btnAttack.Margin = new Padding(6);
             btnAttack.Name = "btnAttack";
             btnAttack.Size = new Size(200, 74);
             btnAttack.TabIndex = 6;
@@ -172,7 +172,7 @@
             btnDefend.BackColor = Color.LightGoldenrodYellow;
             btnDefend.FlatStyle = FlatStyle.Flat;
             btnDefend.Location = new Point(1184, 184);
-            btnDefend.Margin = new Padding(6, 6, 6, 6);
+            btnDefend.Margin = new Padding(6);
             btnDefend.Name = "btnDefend";
             btnDefend.Size = new Size(200, 74);
             btnDefend.TabIndex = 10;
@@ -199,7 +199,7 @@
             Controls.Add(btnNewGame);
             Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Margin = new Padding(6, 6, 6, 6);
+            Margin = new Padding(6);
             Name = "Durak";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Дурак";

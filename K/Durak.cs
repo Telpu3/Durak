@@ -63,7 +63,7 @@ namespace K
             lblTrump.Text = "Козырь: " + game.TrumpSuit;
             lblDeck.Text = "В колоде: " + game.DeckCount() + " карт";
 
-            // 7. Определяем кто атакует и пишем в lblTurn
+            //  Определяем кто атакует 
             if (game.Attacker == game.Player1)
             {
                 lblTurn.Text = "Ходит: Игрок";
@@ -86,7 +86,7 @@ namespace K
             if (index < playerCards.Count)
             {
                 selectedCard = playerCards[index];
-                this.Text = "Выбрана " + selectedCard.Name;
+                this.Text = "Выбрана " + selectedCard.ToShortString();
             }
         }
         private void firstTable_SelectedIndexChanged(object sender, EventArgs e)
@@ -101,7 +101,7 @@ namespace K
             if (index < tablecards.Count)
             {
                 selectedTableCard = tablecards[index];
-                this.Text = "Выбрана " + selectedTableCard.Name;
+                this.Text = "Выбрана " + selectedTableCard.ToShortString();
             }
         }
 
@@ -180,7 +180,7 @@ namespace K
                 List<Card> table = game.GetTableCards();
                 for (int i = 0; i < table.Count; i++)
                 {
-                    firstTable.Items.Add(table[i].Name);
+                    firstTable.Items.Add(table[i].ToShortString());
                 }
 
                 return;
@@ -399,15 +399,6 @@ namespace K
         }
         private void ColorDrawItem(object sender, DrawItemEventArgs e)
         {
-            if (e.Index < 0) return;
-
-            ListBox lb = (ListBox)sender;
-            string text = lb.Items[e.Index].ToString();
-
-            Color c = text.EndsWith("♥") || text.EndsWith("♦") ? Color.Red : Color.Black;
-
-            e.DrawBackground();
-            TextRenderer.DrawText(e.Graphics, text, e.Font, e.Bounds, c, Color.Empty);
         }
     }
 }
