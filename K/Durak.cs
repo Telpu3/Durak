@@ -23,7 +23,8 @@ namespace K
         private void Durak_Load(object sender, EventArgs e)
         {
         }
-
+        
+        //Новая игра
         private void btnNewGame_Click(object sender, EventArgs e)
         {
             game.StartNewGame();
@@ -36,6 +37,7 @@ namespace K
                 ComputerTurn();
             }
         }
+        //Обновление формы
         private void UpdateUI()
         {
             firstPlayerHand.Items.Clear();
@@ -73,7 +75,7 @@ namespace K
                 lblTurn.Text = "Ходит: Компьютер";
             }
         }
-
+        //Выбор карты
         private void firstPlayerHand_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = firstPlayerHand.SelectedIndex;
@@ -89,6 +91,7 @@ namespace K
                 this.Text = "Выбрана " + selectedCard.ToShortString();
             }
         }
+        //Выбор со стола
         private void firstTable_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = firstTable.SelectedIndex;
@@ -109,7 +112,7 @@ namespace K
         {
 
         }
-
+        //Ход игрока
         private void btnAttack_Click(object sender, EventArgs e)
         {
             if (selectedCard == null)
@@ -135,6 +138,7 @@ namespace K
                 return;
             }
         }
+        //Действие компьютера
         private void ComputerTurn()
         {
             Player winner = game.CheckWinner();
@@ -153,7 +157,7 @@ namespace K
                     MessageBox.Show("Победил компьютер!");
             }
         }
-
+        //Защита
         private void btnDefend_Click(object sender, EventArgs e)
         {
             if (game.Defender != game.Player1)
@@ -176,6 +180,7 @@ namespace K
             {
                 MessageBox.Show("Этой картой нельзя побить");
 
+                //Перерисовываем стол, чтобы карты не испарялись
                 firstTable.Items.Clear();
                 List<Card> table = game.GetTableCards();
                 for (int i = 0; i < table.Count; i++)
@@ -207,7 +212,7 @@ namespace K
                 }
             }
         }
-
+        //Берем карты
         private void btnTake_Click(object sender, EventArgs e)
         {
             if (game.Defender != game.Player1)
@@ -241,7 +246,7 @@ namespace K
                 ComputerTurn();
             }
         }
-
+        //Бито
         private void btnFinish_Click(object sender, EventArgs e)
         {
             if (game.Player1 != game.Attacker)
@@ -356,7 +361,6 @@ namespace K
             else
             {
                 notbeatCard = table[table.Count - 1];
-
             }
             List<Card> hand = game.Player2.GetHand();
             List<Card> canbeat = new List<Card>();
