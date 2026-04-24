@@ -18,6 +18,7 @@ namespace K
             firstTable.Font = cardFont;
 
             game = new Game();
+            firstComputerHand.Enabled = false;
         }
 
         private void Durak_Load(object sender, EventArgs e)
@@ -383,7 +384,7 @@ namespace K
                 UpdateUI();
                 await Pause();        // Показывает
 
-                // После взятия карт, если атакующий всё ещё компьютер — продолжаем атаку
+                // После взятия карт, если атакующий всё ещё компьютер - продолжаем атаку
                 if (game.Attacker == game.Player2)
                 {
                     await ThinkPause();
@@ -392,7 +393,6 @@ namespace K
                 return;
             }
         }
-
         private void firstComputerHand_SelectedIndexChanged(object sender, EventArgs e)
         {
 
