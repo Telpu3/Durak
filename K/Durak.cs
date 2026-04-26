@@ -24,15 +24,20 @@ namespace K
         private void Durak_Load(object sender, EventArgs e)
         {
         }
-        
+
         //Новая игра
         private void btnNewGame_Click(object sender, EventArgs e)
         {
+            btnAttack.Enabled = true;
+            btnDefend.Enabled = true;
+            btnTake.Enabled = true;
+            btnFinish.Enabled = true;
+
             game.StartNewGame();
             selectedCard = null;
             selectedTableCard = null;
             UpdateUI();
-            
+
             if (game.Attacker == game.Player2)
             {
                 ComputerTurn();
@@ -128,10 +133,10 @@ namespace K
                 Player winner = game.CheckWinner();
                 if (winner != null)
                 {
+                    DisableGameButtons();
                     MessageBox.Show(winner == game.Player1 ? "Вы выиграли!" : "Победил компьютер!");
                 }
                 else ComputerTurn();
-
             }
             else
             {
@@ -148,15 +153,6 @@ namespace K
                 ComputerAttack();
             else if (game.Defender == game.Player2)
                 ComputerDefend();
-
-            winner = game.CheckWinner();
-            if (winner != null)
-            {
-                if (winner == game.Player1)
-                    MessageBox.Show("Победил игрок!");
-                else
-                    MessageBox.Show("Победил компьютер!");
-            }
         }
         //Защита
         private void btnDefend_Click(object sender, EventArgs e)
@@ -174,6 +170,14 @@ namespace K
             if (selectedTableCard == null)
             {
                 MessageBox.Show("Выберите карту со стола, которую хотите побить!");
+                return;
+            }
+            //Проверка на непокрытую карту
+            List<Card> tbl = game.GetTableCards();
+            Card notbeat = tbl[tbl.Count - 1];
+            if (selectedTableCard != notbeat)
+            {
+                MessageBox.Show("Нужно бить последнюю непокрытую карту!");
                 return;
             }
             bool res = game.Defend(game.Defender, selectedTableCard, selectedCard);
@@ -198,9 +202,10 @@ namespace K
                 Player winner = game.CheckWinner();
                 if (winner != null)
                 {
+                    DisableGameButtons();
                     if (winner == game.Player1)
                     {
-                        MessageBox.Show("Победил игрок!");
+                        MessageBox.Show("Победил игрок!");                        
                     }
                     else
                     {
@@ -233,6 +238,7 @@ namespace K
             Player winner = game.CheckWinner();
             if (winner != null)
             {
+                DisableGameButtons();
                 if (winner == game.Player1)
                 {
                     MessageBox.Show("Победил игрок!");
@@ -261,13 +267,14 @@ namespace K
                 return;
             }
             game.FinishRound();
-;           selectedTableCard = null;
+            selectedTableCard = null;
             selectedCard = null;
             UpdateUI();
 
             Player winner = game.CheckWinner();
             if (winner != null)
             {
+                DisableGameButtons();
                 if (winner == game.Player1)
                 {
                     MessageBox.Show("Победил игрок!");
@@ -284,21 +291,32 @@ namespace K
         }
         private async void ComputerAttack()
         {
-            await ThinkPause();
             Card card = ComputerGetAttackCard();
             if (card != null)
             {
                 game.MakeMove(game.Player2, card);
-                UpdateUI();
-                await Pause();
+                UpdateUI();              
+                // Проверка победителя после защиты
+                Player winner = game.CheckWinner();
+                if (winner != null)
+                {
+                    DisableGameButtons();
+                    MessageBox.Show(winner == game.Player1 ? "Победил игрок!" : "Победил компьютер!");
+                    return;
+                }
             }
             else
             {
-                await ThinkPause();
                 game.FinishRound();
                 UpdateUI();
-                await Pause();
 
+                Player winner = game.CheckWinner();
+                if (winner != null)
+                {
+                    DisableGameButtons();
+                    MessageBox.Show(winner == game.Player1 ? "Победил игрок!" : "Победил компьютер!");
+                    return;
+                }
                 if (game.Attacker == game.Player2)
                 {
                     ComputerAttack();
@@ -371,26 +389,30 @@ namespace K
             }
             if (canbeat.Count > 0)
             {
-                await ThinkPause();   // Думает
                 game.Defend(game.Player2, notbeatCard, canbeat[0]);
                 UpdateUI();
-                await Pause();        // Показывает
+                // Проверка победителя после защиты
+                Player winner = game.CheckWinner();
+                if (winner != null)
+                {
+                    DisableGameButtons();
+                    MessageBox.Show(winner == game.Player1 ? "Победил игрок!" : "Победил компьютер!");
+                    return;
+                }
                 ComputerDefend();
             }
             else
             {
-                await ThinkPause();   // Думает
                 game.TakeCards(game.Player2);
                 UpdateUI();
-                await Pause();        // Показывает
 
-                // После взятия карт, если атакующий всё ещё компьютер - продолжаем атаку
-                if (game.Attacker == game.Player2)
+                Player winner = game.CheckWinner();
+                if (winner != null)
                 {
-                    await ThinkPause();
-                    ComputerAttack();
+                    DisableGameButtons();
+                    MessageBox.Show(winner == game.Player1 ? "Победил игрок!" : "Победил компьютер!");
+                    return;
                 }
-                return;
             }
         }
         private void firstComputerHand_SelectedIndexChanged(object sender, EventArgs e)
@@ -403,6 +425,18 @@ namespace K
         }
         private void ColorDrawItem(object sender, DrawItemEventArgs e)
         {
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void DisableGameButtons()
+        {
+            btnAttack.Enabled = false;
+            btnDefend.Enabled = false;
+            btnTake.Enabled = false;
+            btnFinish.Enabled = false;
         }
     }
 }

@@ -39,6 +39,7 @@
             lblDeck = new Label();
             lblTurn = new Label();
             btnDefend = new Button();
+            btnExit = new Button();
             SuspendLayout();
             // 
             // btnNewGame
@@ -56,7 +57,7 @@
             // 
             btnTake.BackColor = Color.LightGoldenrodYellow;
             btnTake.FlatStyle = FlatStyle.Flat;
-            btnTake.Location = new Point(280, 184);
+            btnTake.Location = new Point(827, 108);
             btnTake.Margin = new Padding(6);
             btnTake.Name = "btnTake";
             btnTake.Size = new Size(200, 74);
@@ -69,7 +70,7 @@
             // 
             btnFinish.BackColor = Color.LightGoldenrodYellow;
             btnFinish.FlatStyle = FlatStyle.Flat;
-            btnFinish.Location = new Point(581, 184);
+            btnFinish.Location = new Point(568, 108);
             btnFinish.Margin = new Padding(6);
             btnFinish.Name = "btnFinish";
             btnFinish.Size = new Size(200, 74);
@@ -121,7 +122,7 @@
             // 
             btnAttack.BackColor = Color.LightGoldenrodYellow;
             btnAttack.FlatStyle = FlatStyle.Flat;
-            btnAttack.Location = new Point(907, 184);
+            btnAttack.Location = new Point(568, 220);
             btnAttack.Margin = new Padding(6);
             btnAttack.Name = "btnAttack";
             btnAttack.Size = new Size(200, 74);
@@ -171,7 +172,7 @@
             // 
             btnDefend.BackColor = Color.LightGoldenrodYellow;
             btnDefend.FlatStyle = FlatStyle.Flat;
-            btnDefend.Location = new Point(1184, 184);
+            btnDefend.Location = new Point(827, 220);
             btnDefend.Margin = new Padding(6);
             btnDefend.Name = "btnDefend";
             btnDefend.Size = new Size(200, 74);
@@ -180,12 +181,23 @@
             btnDefend.UseVisualStyleBackColor = false;
             btnDefend.Click += btnDefend_Click;
             // 
+            // btnExit
+            // 
+            btnExit.Location = new Point(24, 624);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(124, 47);
+            btnExit.TabIndex = 11;
+            btnExit.Text = "Выход";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
+            // 
             // Durak
             // 
             AutoScaleDimensions = new SizeF(16F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkGreen;
-            ClientSize = new Size(1608, 707);
+            ClientSize = new Size(1454, 691);
+            Controls.Add(btnExit);
             Controls.Add(btnDefend);
             Controls.Add(lblTurn);
             Controls.Add(lblDeck);
@@ -221,5 +233,6 @@
         private Label lblDeck;
         private Label lblTurn;
         private Button btnDefend;
+        private Button btnExit;
     }
 }
