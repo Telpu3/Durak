@@ -315,11 +315,6 @@ namespace K
                 {
                     DisableGameButtons();
                     MessageBox.Show(winner == game.Player1 ? "Победил игрок!" : "Победил компьютер!");
-                    return;
-                }
-                if (game.Attacker == game.Player2)
-                {
-                    ComputerAttack();
                 }
             }
         }
